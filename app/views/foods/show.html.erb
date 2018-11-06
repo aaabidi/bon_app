@@ -16,7 +16,7 @@
 </p>
 
 <h2>Food Reviews</h2>
-  <% @food.food_reviews.each do |review| %>
+<% @food.food_review.each do |review| %>
   <p>
     <strong>Reviewer:</strong>
     <%= review.reviewer %>
@@ -27,10 +27,6 @@
     <%= review.rating %>
   </p>
 
-<h2>
-  <%= form_for([@food,@food.food_reviews.build]) do ||%>
-</h2>
-
   <p>
     <strong>Tags:</strong>
     <%= review.tags %>
@@ -38,26 +34,29 @@
 <% end %>
 
 <h2>New Comment</h2>
-<%= form_for([@article, article.food_reviews.build]) do |f| %>
-<p>
-  <%= f.label :reviewer %> <br />
-  <%= f.text_field :reviewer %>
-</p>
+<%= form_for([@food, @food.food_review.build]) do |f| %>
+  <p>
+    <%= f.label :reviewer %>
+    <br>
+    <%= f.text_field :reviewer %>
+  </p>
 
-<p>
-  <%= f.label :rating %> <br />
-  <%= f.range_field :rating, in: 1..5, step: 1%>
-</p>
+  <p>
+    <%= f.label :rating %>
+    <br/>
+    <%= f.range_field :rating, in: 1..5, step: 1%>
+  </p>
 
-<p>
-  <%= f.label :tags %> <br />
-  <%= f.text_field :tags %>
-</p>
+  <p>
+    <%= f.label :tags %>
+    <br/>
+    <%= f.text_field :tags %>
+  </p>
 
-<p>
-  <%=f.submit%>
-</p>
-
-<%= link_to 'Edit', edit_food_path(@food) %> |
-<%= link_to 'Back', foods_path %>
+  <p>
+    <%=f.submit%>
+  </p>
 <% end %>
+
+<%= link_to 'Edit', edit_food_path(@food) %>
+<%= link_to 'Back', foods_path %>
