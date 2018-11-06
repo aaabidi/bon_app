@@ -10,12 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_06_184929) do
+ActiveRecord::Schema.define(version: 2018_11_06_191436) do
+
+  create_table "food_reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "tags"
+    t.integer "food_id"
+    t.string "reviewer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_food_reviews_on_food_id"
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "password", null: false
-    t.string "name", null: false
+    t.string "email"
+    t.string "password"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
