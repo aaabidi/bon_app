@@ -3,9 +3,7 @@
 one:
   hall: one
   name: MyString
-  description: MyText
 
 two:
   hall: two
   name: MyString
-  description: MyText

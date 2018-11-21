@@ -10,22 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_06_191436) do
+ActiveRecord::Schema.define(version: 2018_11_21_150811) do
+
+  create_table "amenities", force: :cascade do |t|
+    t.integer "hall_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hall_id"], name: "index_amenities_on_hall_id"
+  end
+
+  create_table "amenity_reviews", force: :cascade do |t|
+    t.integer "amenity_id"
+    t.integer "user_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amenity_id"], name: "index_amenity_reviews_on_amenity_id"
+    t.index ["user_id"], name: "index_amenity_reviews_on_user_id"
+  end
 
   create_table "food_reviews", force: :cascade do |t|
-    t.integer "rating"
-    t.string "tags"
     t.integer "food_id"
-    t.string "reviewer"
+    t.integer "user_id"
+    t.string "title"
+    t.text "body"
+    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["food_id"], name: "index_food_reviews_on_food_id"
+    t.index ["user_id"], name: "index_food_reviews_on_user_id"
   end
 
   create_table "foods", force: :cascade do |t|
+    t.integer "hall_id"
     t.string "name"
     t.text "description"
-    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hall_id"], name: "index_foods_on_hall_id"
+  end
+
+  create_table "halls", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

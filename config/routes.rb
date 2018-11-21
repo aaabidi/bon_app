@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :food_reviews
   resources :foods do
     resources :comments
   end
